@@ -162,14 +162,14 @@
 <!- * * * * * * * * * * End of Placeholder  * * * * * * * * * * * * --
 <!- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
-<main>
-  <h1>Solar Flare</h1>
-  <div id="Game Parent Window">
+<main class="flex flex-col items-center w-full h-full">
+  <h1>Solare Flare 2048</h1>
+  <div id="Game Parent Window" class="bg-gray-700">
     <div id="Game Board"></div>
-    <div id="Game Score"></div>
+    <div id="Game Score">Score: {{currentScore}}</div>
   </div>
-  <div id="Game Buttons" class="">
-    <button id="Restart Button">Restart</button>
+  <div id="Game Buttons">
+    <button id="Restart Button" class="bg-orange-500">Restart</button>
   </div>
   <div id="Extra Buttons">
     <button id="HowToPlay Button"></button>
