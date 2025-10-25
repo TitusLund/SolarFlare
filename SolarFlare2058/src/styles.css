@@ -2,3 +2,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.empty-cell{
+  @apply bg-gray-900 rounded-2xl w-11/12 aspect-square
+           flex flex-col justify-evenly
+           text-center text-white text-3xl;
+
+}
+
+.cell{
+  @apply bg-gray-500 rounded-2xl w-11/12 aspect-square text-center text-3xl
+           flex flex-col justify-evenly;
+
+}
