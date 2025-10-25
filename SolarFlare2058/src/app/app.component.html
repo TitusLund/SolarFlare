@@ -168,19 +168,19 @@
                                     bg-gray-900 rounded-2xl h-3/5 aspect-square p-3
                                       place-items-center justify-evenly">
     <div id="Game Board" class="inline-grid grid-cols-4 grid-rows-4 place-items-center
-                                 bg-gray-700 rounded-2xl w-11/12 p-2 aspect-square">
+                                 bg-gray-700 rounded-2xl w-5/6 p-2 aspect-square">
       <div *ngFor="let cell of gameBoard" [class]="cell<=0 ? 'cell' : 'empty-cell'">
         <p>{{cell}}</p>
       </div>
     </div>
-    <div id="Game Score" class="h-1/12 w-fit">Score: {{currentScore}}</div>
+    <div id="Game Score" class="h-1/12 w-fit text-white text-4xl">Score: {{currentScore}}</div>
   </div>
   <div id="Game Buttons">
-    <button id="Restart Button" class="bg-orange-500 px-2 py-1 rounded">Restart</button>
+    <button id="Restart Button" class="restart-button">Restart</button>
   </div>
   <div id="Extra Buttons">
-    <button id="HowToPlay Button"></button>
-    <button id="Highscores Button"></button>
+    <button id="HowToPlay Button" class="extra-button">How to Play</button>
+    <button id="Highscores Button" class="extra-button">Highscores</button>
   </div>
 
 </main>
