@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NgFor, NgIf, NgClass } from '@angular/common';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
+import { MatDialog } from '@angular/material/dialog';
+import { MatButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-root',
@@ -16,4 +18,9 @@ export class AppComponent {
     0, 0, 0, 0,
     0, 0, 0, 2,
     0, 0, 0, 0];
+  readonly dialog = inject(MatDialog);
+
+  openDialog() {
+    this.dialog.open(LeaderboardComponent);
+  }
 }
