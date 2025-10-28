@@ -1,0 +1,19 @@
+<div class="flex items-center justify-center bg-gray-100">
+  <div class="rounded-lg w-96 p-6 max-h-[60vh] bg-white flex flex-col">
+
+    <!-- Header (fixed at top of modal) -->
+    <div class="flex items-center mb-4 shrink-0">
+      <h2 class="text-xl font-semibold flex-[0.8]">Rules:</h2>
+      <h1 class="text-xl font-bold text-right flex-[0.2] cursor-pointer" (click)="closeDialog()">X</h1>
+    </div>
+
+    <!-- Scrollable content -->
+    <div class="flex gap-4 overflow-y-auto">
+      <p>
+        Use the arrow keys to move the tiles.
+        Combine tiles to make larger tiles.
+        Game ends when there are no more available moves.
+      </p>
+    </div>
+  </div>
+</div>
