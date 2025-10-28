@@ -9,17 +9,17 @@ import {
   MatDialogTitle,
 } from '@angular/material/dialog';
 
+
 @Component({
-  selector: 'app-leaderboard',
+  selector: 'app-instructions',
   standalone: true,
   imports: [MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose, MatButtonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: './leaderboard.component.html',
-  styleUrl: './leaderboard.component.css'
+  templateUrl: './instructions.component.html',
+  styleUrl: './instructions.component.css'
 })
-
-export class LeaderboardComponent {
-  private dialogRef = inject(MatDialogRef<LeaderboardComponent>);
+export class InstructionsComponent {
+  private dialogRef = inject(MatDialogRef<InstructionsComponent>);
 
   closeDialog(): void {
     this.dialogRef.close();

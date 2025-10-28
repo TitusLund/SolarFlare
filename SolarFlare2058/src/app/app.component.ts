@@ -4,6 +4,7 @@ import { NgFor, NgIf, NgClass } from '@angular/common';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatButton } from '@angular/material/button';
+import { InstructionsComponent } from './instructions/instructions.component';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +21,11 @@ export class AppComponent {
     0, 0, 0, 0];
   readonly dialog = inject(MatDialog);
 
-  openDialog() {
+  openLeaderboardDialog() {
     this.dialog.open(LeaderboardComponent);
+  }
+
+  openHowToPlayDialog() {
+    this.dialog.open(InstructionsComponent);
   }
 }
