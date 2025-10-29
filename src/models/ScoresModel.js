@@ -4,6 +4,7 @@ const BaseModel = require('./BaseModel');
  * Scores Model
  * Handles all database operations related to game scores
  * Extends BaseModel to inherit common CRUD operations
+ * game-specific methods
  */
 class ScoresModel extends BaseModel {
     constructor() {

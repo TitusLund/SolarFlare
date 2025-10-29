@@ -3,6 +3,7 @@ const dbConnection = require('../config/database');
 /**
  * Base Model Class
  * Provides common database operations that can be extended by specific models
+ * CRUD operations: Create, Read, Update, Delete
  */
 class BaseModel {
     constructor(tableName) {
