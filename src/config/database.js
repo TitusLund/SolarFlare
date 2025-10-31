@@ -3,7 +3,9 @@ require('dotenv').config();
 
 /**
  * Database Connection Configuration
- * This file establishes and manages the connection to the MySQL database - handles connection management and error handling
+ * MySQL connection pool
+ * This file establishes and manages the connection to the MySQL database - 
+ * handles connection management and error handling
  */
 
 class DatabaseConnection {
