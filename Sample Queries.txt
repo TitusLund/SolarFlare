@@ -1,0 +1,14 @@
+Select all with highest first
+SELECT * FROM cst326.scores ORDER BY score DESC
+
+Same as above but without id
+SELECT username, score FROM cst326.scores ORDER BY score DESC
+
+Create new score
+INSERT INTO scores (username, score) VALUES ('?',?)
+
+Get the lowest score for deletion
+SELECT id FROM scores WHERE score = (SELECT MIN(score) FROM scores) LIMIT 1
+
+Execute the delete with the id from above
+DELETE FROM scores where Id = ?

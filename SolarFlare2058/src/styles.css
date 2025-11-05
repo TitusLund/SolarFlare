@@ -1,0 +1,29 @@
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.empty-cell{
+  @apply bg-gray-900 rounded-2xl w-11/12 aspect-square
+           flex flex-col justify-evenly
+           text-center text-white text-3xl;
+
+}
+
+.cell{
+  @apply bg-gray-500 rounded-2xl w-11/12 aspect-square text-center text-3xl
+           flex flex-col justify-evenly;
+}
+
+.extra-button{
+  @apply bg-gray-600 rounded-full px-4 py-2 mx-4
+           text-2xl text-white;
+}
+
+.restart-button{
+  @apply bg-orange-500 rounded-full px-4 py-2 mx-4
+           text-2xl;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
