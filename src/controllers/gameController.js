@@ -1,13 +1,16 @@
+const activeGames = {};
+
 exports.gameStart = (req, res) => {
 	try {
-		const { gameId } = req.body;
-
+		const gameSessionId = crypto.randomUUID();
 		const gameSession = {
-			id: gameId,
+			id: gameSessionId,
 			player: "",
 			status: "active",
 			gameBoard: [],
 		};
+		activeGames[gameSessionId] = gameSession;
+		console.log(activeGames);
 
 		res.status(200).json({
 			message: "Game started successfully!",

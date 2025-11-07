@@ -6,13 +6,14 @@ const dbConnection = require('./src/config/database');
 
 // Import models
 const ScoresModel = require('./src/models/ScoresModel');
+const gameRoutes = require('./src/controllers/gameController');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Basic middleware
 app.use(express.json()); // Parse JSON bodies
-app.use("/api/game", gameRoutes);
+app.use("/api/game", gameRoutes.gameStart);
 
 // Simple test endpoint to demonstrate database access
 app.get('/scores', async (req, res) => {

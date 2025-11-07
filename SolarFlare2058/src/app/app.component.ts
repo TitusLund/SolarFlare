@@ -5,6 +5,7 @@ import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatButton } from '@angular/material/button';
 import { InstructionsComponent } from './instructions/instructions.component';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -14,12 +15,33 @@ import { InstructionsComponent } from './instructions/instructions.component';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  currentScore = 0;
+  currentScore: number = 0;
+  gameId = 0;
   gameBoard: number[] = [0, 2, 0, 0,
     0, 0, 0, 0,
     0, 0, 0, 2,
     0, 0, 0, 0];
   readonly dialog = inject(MatDialog);
+
+  constructor(private http: HttpClient) { }
+
+  ngOnInit(): void {
+    this.startGameOnLoad();
+  }
+
+  startGameOnLoad(): void {
+    // TODO: remove the hardcoded localhost here
+    this.http
+      .post('http://localhost:3000/api/game/start', {})
+      .subscribe({
+        next: (response: any) => {
+          this.gameId = response.game.gameId;
+        },
+        error: (err) => {
+          console.error('Error starting game:', err);
+        }
+      })
+  }
 
   openLeaderboardDialog() {
     this.dialog.open(LeaderboardComponent);
