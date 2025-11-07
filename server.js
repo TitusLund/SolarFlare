@@ -12,6 +12,7 @@ const PORT = process.env.PORT || 3000;
 
 // Basic middleware
 app.use(express.json()); // Parse JSON bodies
+app.use("/api/game", gameRoutes);
 
 // Simple test endpoint to demonstrate database access
 app.get('/scores', async (req, res) => {
