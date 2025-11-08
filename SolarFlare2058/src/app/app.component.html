@@ -169,8 +169,11 @@
                                       place-items-center justify-evenly">
     <div id="Game Board" class="inline-grid grid-cols-4 grid-rows-4 place-items-center
                                  bg-gray-700 rounded-2xl w-full m-4 p-2 aspect-square">
-      <div *ngFor="let cell of gameBoard" [class]="cell<=0 ? 'cell' : 'empty-cell'">
+      <!--<div *ngFor="let cell of gameBoard" [class]="cell<=0 ? 'cell' : 'empty-cell'">
         <p>{{cell}}</p>
+      </div>-->
+      <div *ngFor="let cell of gameBoard" [ngClass]="cell > 0 ? 'cell-filled' : 'cell-empty'">
+        <p>{{cell > 0 ? cell : ''}}</p>
       </div>
     </div>
     <div id="Game Score" class="h-1/12 w-fit text-white text-4xl mb-2.5">Score: {{currentScore}}</div>
