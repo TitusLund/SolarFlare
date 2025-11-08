@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 require('dotenv').config();
 
 // Import database connection
@@ -6,12 +7,22 @@ const dbConnection = require('./src/config/database');
 
 // Import models
 const ScoresModel = require('./src/models/ScoresModel');
+const gameRoutes = require('./src/routes/gameRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Allow Angular frontend (prevent CORS errors)
+app.use(cors({
+    // TODO: remove hardcoded localhost here
+    origin: "http://localhost:4200",
+    methods: ["GET", "POST", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"]
+}));
+
 // Basic middleware
 app.use(express.json()); // Parse JSON bodies
+app.use("/api/game", gameRoutes);
 
 // Simple test endpoint to demonstrate database access
 app.get('/scores', async (req, res) => {

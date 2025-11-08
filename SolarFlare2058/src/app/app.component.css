@@ -1,0 +1,7 @@
+.cell-filled {
+  @apply w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center bg-yellow-400 text-black text-2xl font-bold rounded-md;
+}
+
+.cell-empty {
+  @apply w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center bg-gray-500 rounded-md;
+}
