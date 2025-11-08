@@ -17,9 +17,9 @@ import { HttpClient } from '@angular/common/http';
 export class AppComponent {
   currentScore: number = 0;
   gameId = 0;
-  gameBoard: number[] = [0, 2, 0, 0,
+  gameBoard: number[] = [0, 0, 0, 0,
     0, 0, 0, 0,
-    0, 0, 0, 2,
+    0, 0, 0, 0,
     0, 0, 0, 0];
   readonly dialog = inject(MatDialog);
 
@@ -36,6 +36,7 @@ export class AppComponent {
       .subscribe({
         next: (response: any) => {
           this.gameId = response.game.gameId;
+          this.gameBoard = response.game.gameBoard;
         },
         error: (err) => {
           console.error('Error starting game:', err);

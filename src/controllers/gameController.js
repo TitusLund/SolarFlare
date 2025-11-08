@@ -1,3 +1,5 @@
+const { generateGameboard } = require("../logic/MovementLogic");
+
 const activeGames = {};
 
 exports.gameStart = (req, res) => {
@@ -7,7 +9,7 @@ exports.gameStart = (req, res) => {
 			id: gameSessionId,
 			player: "",
 			status: "active",
-			gameBoard: [],
+			gameBoard: generateGameboard(),
 		};
 		activeGames[gameSessionId] = gameSession;
 		console.log(activeGames);
