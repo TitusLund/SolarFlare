@@ -10,6 +10,7 @@ exports.gameStart = (req, res) => {
 			player: "",
 			status: "active",
 			gameBoard: generateGameboard(),
+			score: 0
 		};
 		activeGames[gameSessionId] = gameSession;
 		console.log(activeGames);
@@ -26,7 +27,8 @@ exports.gameStart = (req, res) => {
 	}
 };
 
-exports.shiftPieces = (req, res) => {
+exports.shiftPieces = (req, res, updateScore) => {
+
 	try {
 		const { gameId, direction } = req.body;
 
@@ -42,18 +44,22 @@ exports.shiftPieces = (req, res) => {
 		let newBoard = [...gameSession.gameBoard];
 		let shiftedBoard;
 
+		let updateScore = (scoreToAdd) => {
+			gameSession.score += scoreToAdd
+		}
+
 		switch (direction.toLowerCase()) {
 			case "up":
-				shiftedBoard = shiftUp(newBoard);
+				shiftedBoard = shiftUp(newBoard, updateScore);
 				break;
 			case "down":
-				shiftedBoard = shiftDown(newBoard);
+				shiftedBoard = shiftDown(newBoard, updateScore);
 				break;
 			case "left":
-				shiftedBoard = shiftLeft(newBoard);
+				shiftedBoard = shiftLeft(newBoard, updateScore);
 				break;
 			case "right":
-				shiftedBoard = shiftRight(newBoard);
+				shiftedBoard = shiftRight(newBoard , updateScore);
 				break;
 			default:
 				return res.status(400).json({ message: "Invalid direction" });

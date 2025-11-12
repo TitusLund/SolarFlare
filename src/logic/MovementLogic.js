@@ -19,12 +19,14 @@ exports.generateGameboard = () => {
 	return gameboard;
 }
 
-const mergeLine = (line) => {
+const mergeLine = (line, updateScore) => {
 	line = line.filter(num => num !== 0);
 
 	for (let i = 0; i < line.length - 1; i++) {
 		if (line[i] === line[i + 1]) {
-			line[i] *= 2;
+			val = line[i] * 2
+			updateScore(val)
+			line[i] = val;
 			line[i + 1] = 0;
 		}
 	}
@@ -35,11 +37,11 @@ const mergeLine = (line) => {
 	return line;
 };
 
-exports.shiftUp = (gameboard) => {
+exports.shiftUp = (gameboard, updateScore) => {
 	let newBoard = Array(16).fill(0);
 	for (let col = 0; col < 4; col++) {
 		let line = [gameboard[col], gameboard[col + 4], gameboard[col + 8], gameboard[col + 12]];
-		let merged = mergeLine(line);
+		let merged = mergeLine(line, updateScore);
 		for (let row = 0; row < 4; row++) {
 			newBoard[col + row * 4] = merged[row];
 		}
@@ -47,11 +49,11 @@ exports.shiftUp = (gameboard) => {
 	return newBoard;
 }
 
-exports.shiftDown = (gameboard) => {
+exports.shiftDown = (gameboard, updateScore) => {
 	let newBoard = Array(16).fill(0);
 	for (let col = 0; col < 4; col++) {
 		let line = [gameboard[col + 12], gameboard[col + 8], gameboard[col + 4], gameboard[col]];
-		let merged = mergeLine(line);
+		let merged = mergeLine(line, updateScore);
 		merged.reverse();
 		for (let row = 0; row < 4; row++) {
 			newBoard[col + row * 4] = merged[row];
@@ -60,21 +62,21 @@ exports.shiftDown = (gameboard) => {
 	return newBoard;
 }
 
-exports.shiftRight = (gameboard) => {
+exports.shiftRight = (gameboard, updateScore) => {
 	let newBoard = [];
 	for (let row = 0; row < 4; row++) {
 		let line = gameboard.slice(row * 4, row * 4 + 4).reverse();
-		let merged = mergeLine(line);
+		let merged = mergeLine(line, updateScore);
 		newBoard.push(...merged.reverse());
 	}
 	return newBoard;
 }
 
-exports.shiftLeft = (gameboard) => {
+exports.shiftLeft = (gameboard, updateScore) => {
 	let newBoard = [];
 	for (let row = 0; row < 4; row++) {
 		const line = gameboard.slice(row * 4, row * 4 + 4);
-		const merged = mergeLine(line);
+		const merged = mergeLine(line, updateScore);
 		newBoard.push(...merged);
 	}
 	return newBoard;

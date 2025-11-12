@@ -5,7 +5,7 @@ import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatButton } from '@angular/material/button';
 import { InstructionsComponent } from './instructions/instructions.component';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -21,12 +21,12 @@ export class AppComponent {
     0, 0, 0, 0,
     0, 0, 0, 0,
     0, 0, 0, 0];
-  readonly dialog = inject(MatDialog);
+
 
   private touchStartX = 0;
   private touchStartY = 0;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.startGameOnLoad();
@@ -109,6 +109,8 @@ export class AppComponent {
       .subscribe({
         next: (response: any) => {
           this.gameBoard = response.game.gameBoard;
+          this.currentScore = response.game.score;
+          console.log(response.game)
         },
         error: (err) => {
           console.error('Error shifting pieces:', err);

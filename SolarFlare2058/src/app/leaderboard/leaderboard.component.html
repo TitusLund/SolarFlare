@@ -8,40 +8,13 @@
     </div>
 
     <!-- Scrollable content -->
+    
     <div class="flex gap-4 overflow-y-auto">
       <div class="flex-1">
-        <p>KFS</p>
-        <p>KFS</p>
-        <p>KFS</p>
-        <p>KFS</p>
-        <p>KFS</p>
-        <p>KFS</p>
-        <p>KFS</p>
-        <p>KFS</p>
-        <p>KFS</p>
-        <p>KFS</p>
-        <p>KFS</p>
-        <p>KFS</p>
-        <p>KFS</p>
-        <p>KFS</p>
-        <p>KFS</p>
+        <p *ngFor="let item of scores">{{ item.username }}</p>
       </div>
       <div class="flex-1 text-right">
-        <p>923032</p>
-        <p>923032</p>
-        <p>923032</p>
-        <p>923032</p>
-        <p>923032</p>
-        <p>923032</p>
-        <p>923032</p>
-        <p>923032</p>
-        <p>923032</p>
-        <p>923032</p>
-        <p>923032</p>
-        <p>923032</p>
-        <p>923032</p>
-        <p>923032</p>
-        <p>923032</p>
+        <p *ngFor="let item of scores">{{ item.score }}</p>
       </div>
     </div>
   </div>
