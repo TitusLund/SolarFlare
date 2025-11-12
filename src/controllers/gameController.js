@@ -27,7 +27,7 @@ exports.gameStart = (req, res) => {
 	}
 };
 
-exports.shiftPieces = (req, res, updateScore) => {
+exports.shiftPieces = (req, res) => {
 
 	try {
 		const { gameId, direction } = req.body;
