@@ -37,6 +37,33 @@ const mergeLine = (line, updateScore) => {
 	return line;
 };
 
+exports.isGameOver = (gameboard) => {
+	// 1. If any empty space exists → NOT game over
+	if (gameboard.includes(0)) return false;
+
+	// 2. Check horizontal neighbors
+	for (let row = 0; row < 4; row++) {
+		for (let col = 0; col < 3; col++) {
+			const idx = row * 4 + col;
+			if (gameboard[idx] === gameboard[idx + 1]) {
+				return false; // merge available
+			}
+		}
+	}
+
+	// 3. Check vertical neighbors
+	for (let col = 0; col < 4; col++) {
+		for (let row = 0; row < 3; row++) {
+			const idx = row * 4 + col;
+			if (gameboard[idx] === gameboard[idx + 4]) {
+				return false;
+			}
+		}
+	}
+
+	return true;
+};
+
 exports.shiftUp = (gameboard, updateScore) => {
 	let newBoard = Array(16).fill(0);
 	for (let col = 0; col < 4; col++) {

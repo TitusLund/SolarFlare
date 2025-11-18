@@ -1,4 +1,4 @@
-const { generateGameboard, shiftLeft, shiftRight, shiftDown, shiftUp, addRandomTile } = require("../logic/MovementLogic");
+const { generateGameboard, shiftLeft, shiftRight, shiftDown, shiftUp, addRandomTile, isGameOver } = require("../logic/MovementLogic");
 
 const activeGames = {};
 
@@ -59,7 +59,7 @@ exports.shiftPieces = (req, res) => {
 				shiftedBoard = shiftLeft(newBoard, updateScore);
 				break;
 			case "right":
-				shiftedBoard = shiftRight(newBoard , updateScore);
+				shiftedBoard = shiftRight(newBoard, updateScore);
 				break;
 			default:
 				return res.status(400).json({ message: "Invalid direction" });
@@ -71,6 +71,14 @@ exports.shiftPieces = (req, res) => {
 		}
 
 		gameSession.gameBoard = shiftedBoard;
+
+		if (isGameOver(shiftedBoard)) {
+			gameSession.status = "gameover";
+			return res.status(200).json({
+				message: "Game over!",
+				game: gameSession,
+			});
+		}
 
 		res.status(200).json({
 			message: boardChanged ? "Move successful" : "No tiles moved",
