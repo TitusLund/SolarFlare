@@ -5,7 +5,8 @@ import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatButton } from '@angular/material/button';
 import { InstructionsComponent } from './instructions/instructions.component';
-import { HttpClient} from '@angular/common/http';
+import { GameOverComponent } from './game-over/game-over.component';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,7 @@ import { HttpClient} from '@angular/common/http';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
+  isGameOverOpen: boolean = false;
   currentScore: number = 0;
   gameId = 0;
   gameBoard: number[] = [0, 0, 0, 0,
@@ -100,6 +102,7 @@ export class AppComponent {
   // Trigger backend move request
   makeMove(direction: string): void {
     if (!this.gameId) return;
+    if (this.isGameOverOpen) return;
 
     this.http
       .post('http://localhost:3000/api/game/shift', {
@@ -110,12 +113,29 @@ export class AppComponent {
         next: (response: any) => {
           this.gameBoard = response.game.gameBoard;
           this.currentScore = response.game.score;
-          console.log(response.game)
+
+          if (response.game.status === "gameover") {
+            this.openGameOverDialog();
+          }
         },
         error: (err) => {
           console.error('Error shifting pieces:', err);
         },
       });
+  }
+
+  openGameOverDialog() {
+    if (this.isGameOverOpen) return;
+    this.isGameOverOpen = true;
+
+    const dialogRef = this.dialog.open(GameOverComponent);
+    dialogRef.componentInstance.setScore(this.currentScore);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result?.restart) {
+        this.startGameOnLoad();
+        this.currentScore = 0;
+      }
+    })
   }
 
   openLeaderboardDialog() {
