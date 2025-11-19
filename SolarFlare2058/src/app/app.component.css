@@ -1,9 +1,21 @@
 .cell-filled {
-  @apply w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center bg-yellow-400 text-black text-2xl font-bold rounded-md;
+  @apply bg-yellow-400 text-black text-3xl md:text-5xl font-bold rounded-md;
 }
 
+.value2{@apply bg-yellow-600;}
+.value4{@apply bg-yellow-400;}
+.value8{@apply bg-orange-400;}
+.value16{@apply bg-orange-500;}
+.value32{@apply bg-orange-600;}
+.value64{@apply bg-orange-700;}
+.value128{@apply bg-red-600 text-2xl md:text-4xl;}
+.value256{@apply bg-blue-600 text-2xl md:text-4xl;}
+.value512{@apply bg-blue-300 text-2xl md:text-4xl;}
+.value1024{@apply bg-white text-xl md:text-3xl;}
+.value2048{@apply bg-black text-white text-xl md:text-2xl;}
+
 .cell-empty {
-  @apply w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center bg-gray-500 rounded-md;
+  @apply bg-gray-500 rounded-md;
 }
 
 .cell-filled p,

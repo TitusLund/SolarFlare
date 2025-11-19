@@ -3,26 +3,68 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Space-Nova";
+  src: url("assets/fonts/SpaceNova-6Rpd1.otf");
+}
+@font-face {
+  font-family: "Jumpers";
+  src: url("assets/fonts/JumpersHalftone-1jjRj.otf");
+}
+@font-face {
+  font-family: "Jumpers-3d";
+  src: url("assets/fonts/Jumpers3D-JppB7.otf");
+}
+@font-face {
+  font-family: "Space-Monkey";
+  src: url("assets/fonts/SpaceMonkeyBold-Ea5On.otf");
+}
+
+/* Font Classes */
+.nova{ font-family: "Space-Nova"; }
+.jumper{ font-family: "Jumpers"; }
+.jumper-3d{ font-family: "Jumpers-3d";}
+.space-monkey{ font-family: "Space-Monkey"; }
+
+#Main-Header{
+  @apply jumper text-white
+  text-6xl text-center mb-0;
+}
+@media (min-width: 768px){
+  #Main-Header{
+    font-size: 4.75rem;
+  }
+}
+
+/*
 .empty-cell{
   @apply bg-gray-900 rounded-2xl w-11/12 aspect-square
            flex flex-col justify-evenly
            text-center text-white text-3xl;
 
 }
+*/
 
 .cell{
-  @apply bg-gray-500 rounded-2xl w-11/12 aspect-square text-center text-3xl
-           flex flex-col justify-evenly;
+  @apply w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center
+
+  jumper-3d;
 }
 
 .extra-button{
   @apply bg-gray-600 rounded-full px-4 py-2 mx-4
-           text-2xl text-white;
+           md:text-2xl nova text-white;
 }
 
 .restart-button{
-  @apply bg-orange-500 rounded-full px-4 py-2 mx-4
-           text-2xl;
+  @apply bg-transparent border-orange-500 border-4 rounded-full px-4 py-2 mx-4
+           text-4xl nova text-white;
+}
+.restart-button:hover{
+  @apply bg-white border-white text-orange-500 text-4xl;
+}
+.restart-button:active{
+  @apply bg-gray-500 text-white;
 }
 
 html, body { height: 100%; }
