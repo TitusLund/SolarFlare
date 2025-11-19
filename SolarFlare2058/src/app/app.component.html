@@ -179,7 +179,7 @@
     <div id="Game Score" class="h-1/12 w-fit text-white text-4xl mb-2.5">Score: {{currentScore}}</div>
   </div>
   <div id="Game Buttons">
-    <button id="Restart Button" class="restart-button">Restart</button>
+    <button (click)="startGameOnLoad()" id="Restart Button" class="restart-button">Restart</button>
   </div>
   <div id="Extra Buttons">
     <button matButton (click)="openHowToPlayDialog()" id="HowToPlay Button" class="extra-button">How to Play</button>

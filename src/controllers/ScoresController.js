@@ -15,7 +15,7 @@ const pool = require("../config/database.js")
 //         }
 // }
 
-exports.getScores = async ( req, res) => {
+exports.getScores = (req, res) => {
     pool.query("SELECT username, score FROM cst326.scores ORDER BY score DESC", (err, results) => {
         if(err) {
             console.log("Db Error in get all scores")

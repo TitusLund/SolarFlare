@@ -22,13 +22,11 @@
     "supertest": "^7.1.4"
   },
   "devDependencies": {
-    "nodemon": "^3.1.10"
+    "nodemon": "^3.1.11"
   },
   "jest": {
-  "testPathIgnorePatterns": [
-    "/SolarFlare2058"
-  ]
-}
-
-
+    "testPathIgnorePatterns": [
+      "/SolarFlare2058"
+    ]
+  }
 }

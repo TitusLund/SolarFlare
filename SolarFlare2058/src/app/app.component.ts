@@ -42,6 +42,7 @@ export class AppComponent {
         next: (response: any) => {
           this.gameId = response.game.id;
           this.gameBoard = response.game.gameBoard;
+          this.currentScore = 0;
         },
         error: (err) => {
           console.error('Error starting game:', err);
@@ -116,6 +117,7 @@ export class AppComponent {
 
           if (response.game.status === "gameover") {
             this.openGameOverDialog();
+            console.log(response)
           }
         },
         error: (err) => {
@@ -128,10 +130,12 @@ export class AppComponent {
     if (this.isGameOverOpen) return;
     this.isGameOverOpen = true;
 
+
     const dialogRef = this.dialog.open(GameOverComponent);
     dialogRef.componentInstance.setScore(this.currentScore);
     dialogRef.afterClosed().subscribe(result => {
       if (result?.restart) {
+        this.isGameOverOpen = false;
         this.startGameOnLoad();
         this.currentScore = 0;
       }

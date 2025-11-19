@@ -1,3 +1,4 @@
+const { isLeaderboardPos } = require("../db/scoresDB");
 const { generateGameboard, shiftLeft, shiftRight, shiftDown, shiftUp, addRandomTile, isGameOver } = require("../logic/MovementLogic");
 
 const activeGames = {};
@@ -27,7 +28,7 @@ exports.gameStart = (req, res) => {
 	}
 };
 
-exports.shiftPieces = (req, res) => {
+exports.shiftPieces = async (req, res) => {
 
 	try {
 		const { gameId, direction } = req.body;
@@ -74,7 +75,10 @@ exports.shiftPieces = (req, res) => {
 
 		if (isGameOver(shiftedBoard)) {
 			gameSession.status = "gameover";
+
+			let thing = await isLeaderboardPos(gameSession.score)
 			return res.status(200).json({
+				highscore: thing,
 				message: "Game over!",
 				game: gameSession,
 			});
