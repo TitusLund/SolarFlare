@@ -9,7 +9,7 @@
         <p>{{cell}}</p>
       </div>-->
       <div class="cell"
-      *ngFor="let cell of gameBoard" [ngClass]="cell > 0 ? 'cell-filled' : 'cell-empty'">
+      *ngFor="let cell of gameBoard" [ngClass]="cell > 0 ? 'cell-filled value'+cell : 'cell-empty'">
         <p>{{cell > 0 ? cell : ''}}</p>
       </div>
     </div>
