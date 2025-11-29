@@ -19,16 +19,23 @@ export class GameOverComponent {
 
   username: string = "";
   score: number = 0;   // will be injected from parent
-
+  isHighScore: Boolean = false;
   // Called when opening dialog:
-  setScore(score: number) {
+  setScore(score: number, isHighScore: Boolean) {
     this.score = score;
+    this.isHighScore = isHighScore;
+    //this.isHighScore = false;
   }
 
   saveScoreAndRestart() {
     if (!this.username.trim()) return;
 
-    //TODO: this is where we need to POST the score to the DB part of C3-69
+    /*
+     * there is no security here. Anyone could just post this endpoint and send in a new score
+     * to be saved to the database. Im not going to worry about that but if we deploy we will
+     * need to fix.
+     */
+
     this.http.post('http://localhost:3000/api/scores', {
       username: this.username,
       score: this.score
@@ -36,6 +43,10 @@ export class GameOverComponent {
       next: () => this.dialogRef.close({ restart: true }),
       error: (err) => console.error("Failed to save score:", err)
     });
+  }
+
+  restartWithoutSave() {
+    this.dialogRef.close({restart: true});
   }
 
   closeOnly() {

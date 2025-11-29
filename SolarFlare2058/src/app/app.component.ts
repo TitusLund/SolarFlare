@@ -35,6 +35,7 @@ export class AppComponent {
   }
 
   startGameOnLoad(): void {
+    this.isGameOverOpen = false;
     // TODO: remove the hardcoded localhost here
     this.http
       .post('http://localhost:3000/api/game/start', {})
@@ -65,7 +66,8 @@ export class AppComponent {
     };
 
     const direction = keyMap[event.key];
-    if (direction) {
+    //If we dont check if the game over is closed then this blocks wasd in the username box on the game over screen.
+    if (direction && !this.isGameOverOpen) {
       event.preventDefault(); // Disable scroll
       this.makeMove(direction);
     }
@@ -116,8 +118,7 @@ export class AppComponent {
           this.currentScore = response.game.score;
 
           if (response.game.status === "gameover") {
-            this.openGameOverDialog();
-            console.log(response)
+            this.openGameOverDialog(response.highscore);
           }
         },
         error: (err) => {
@@ -126,13 +127,13 @@ export class AppComponent {
       });
   }
 
-  openGameOverDialog() {
+  openGameOverDialog(highscore: boolean) {
     if (this.isGameOverOpen) return;
     this.isGameOverOpen = true;
 
 
     const dialogRef = this.dialog.open(GameOverComponent);
-    dialogRef.componentInstance.setScore(this.currentScore);
+    dialogRef.componentInstance.setScore(this.currentScore, highscore);
     dialogRef.afterClosed().subscribe(result => {
       if (result?.restart) {
         this.isGameOverOpen = false;

@@ -1,6 +1,5 @@
 <div class="flex items-center justify-center bg-gray-100">
   <div class="rounded-lg w-96 p-6 bg-white flex flex-col">
-
     <!-- Header -->
     <div class="flex items-center mb-4">
       <h2 class="text-xl font-semibold flex-1">Game Over</h2>
@@ -13,22 +12,31 @@
     </p>
 
     <!-- Username input -->
-    <div class="flex flex-col mb-4">
+    <div *ngIf="isHighScore" class="flex flex-col mb-4">
       <label class="font-medium mb-1">Enter your username:</label>
       <input [(ngModel)]="username" type="text" class="border rounded px-3 py-2" placeholder="Your name" />
     </div>
 
+    <!-- Username input -->
+    <div *ngIf="!isHighScore" class="flex flex-col mb-4">
+      <p class="text-lg mb-4 text-center">
+        You do not qualify for the leaderboard. Try again.
+      </p>
+    </div>
+
     <!-- Actions -->
     <div class="flex justify-between mt-4">
-      <button mat-button class="bg-yellow-400 hover:bg-yellow-500 px-4 py-2 rounded text-black font-semibold"
+      <div>
+      <button *ngIf="isHighScore" mat-button class="bg-yellow-400 hover:bg-yellow-500 px-4 py-2 rounded text-black font-semibold"
         (click)="saveScoreAndRestart()">
         Save & Restart
       </button>
-
-      <button mat-button class="bg-gray-300 hover:bg-gray-400 px-4 py-2 rounded font-semibold" (click)="closeOnly()">
-        Close
+      </div>
+      <!-- I figured the close was redundant since there is an X at the top window.-->
+      <button mat-button class="bg-gray-300 hover:bg-gray-400 px-4 py-2 rounded font-semibold"
+        (click)="restartWithoutSave()">
+        Restart
       </button>
     </div>
-
   </div>
 </div>
