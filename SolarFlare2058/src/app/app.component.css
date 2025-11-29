@@ -23,3 +23,13 @@
   margin: 0;
   line-height: 1;
 }
+
+.cell-filled{
+  position: relative;
+}
+.cell-filled p{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -45%)
+}
