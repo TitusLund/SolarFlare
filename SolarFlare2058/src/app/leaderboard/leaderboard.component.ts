@@ -36,7 +36,7 @@ export class LeaderboardComponent implements OnInit{
   }
 
     async loadScores() : Promise<void> {
-      this.http.get<{username: string; score: number} []>('http://localhost:3000/api/scores/')
+      this.http.get<{username: string; score: number} []>('http://localhost:3000/api/scores/getScores')
         .subscribe({
           next: (data) => {
             this.scores = data;

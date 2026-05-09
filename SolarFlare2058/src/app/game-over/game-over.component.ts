@@ -36,7 +36,7 @@ export class GameOverComponent {
      * need to fix.
      */
 
-    this.http.post('http://localhost:3000/api/scores', {
+    this.http.post('http://localhost:3000/api/scores/saveScore', {
       username: this.username,
       score: this.score
     }).subscribe({
