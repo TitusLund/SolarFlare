@@ -1,28 +1,31 @@
 services:
-  api:
-    build: .
-    ports:
-      - "3000:3000"
-    environment:
-      - DB_HOST=db
-      - DB_PORT=3306
-      - DB_USER=root
-      - DB_PASSWORD=root
-      - DB_NAME=cst-326
-    depends_on:
-      - db
+    api:
+      build: .
+      container_name: solarflare-api # Giving it a fixed name for Nginx
+      ports:
+        - "3000:3000"
+      environment:
+        - DB_HOST=db
+        - DB_PORT=3306
+        - DB_USER=root
+        - DB_PASSWORD=root
+        - DB_NAME=cst326
+      depends_on:
+        - db
 
-  db:
-    image: mysql:8.0
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: cst-326
-    ports:
-      - "3306:3306"
-    volumes:
-      - /home/attem/Projects/SolarFlare/database.sql
-      - mysql_data:/var/lib/mysql
-
+    db:
+      image: mysql:8.0
+      container_name: solarflare-db
+      restart: always
+      environment:
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_DATABASE: cst326
+      ports:
+        - "3306:3306"
+      volumes:
+      # Fix: Added the internal container path
+        - /home/attem/Projects/SolarFlare/database.sql:/docker-entrypoint-initdb.d/init.sql
+        - mysql_data:/var/lib/mysql
+      
 volumes:
   mysql_data:
