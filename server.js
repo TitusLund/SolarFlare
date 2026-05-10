@@ -19,7 +19,7 @@ const PORT = process.env.PORT || 3000;
 // Allow Angular frontend (prevent CORS errors)
 app.use(cors({
     // TODO: remove hardcoded localhost here
-    origin: "http://app.attem.xyz",
+    origin: "https://app.attem.xyz",
     methods: ["GET", "POST", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"]
 }));

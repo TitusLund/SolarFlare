@@ -38,7 +38,7 @@ export class AppComponent {
     this.isGameOverOpen = false;
     // TODO: remove the hardcoded localhost here
     this.http
-      .post('http://app.attem.xyz/api/game/start', {})
+      .post('/api/game/start', {})
       .subscribe({
         next: (response: any) => {
           this.gameId = response.game.id;
@@ -108,7 +108,7 @@ export class AppComponent {
     if (this.isGameOverOpen) return;
 
     this.http
-      .post('http://app.attem.xyz/api/game/shift', {
+      .post('/api/game/shift', {
         gameId: this.gameId,
         direction: direction,
       })
